@@ -46,3 +46,22 @@ export function fetchBeers(beer_page) {
 			)
 	}
 }
+
+export function shouldFetchBeers(state, beer_page) {
+	const beers = state.beersByPage[beer_page]
+	if (!beers) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+export function fetchBeersIfNeeded(beer_page) {
+	return (dispatch, getState) => {
+		if (shouldFetchBeers(getState(), beer_page)) {
+			return dispatch(fetchBeers(beer_page))
+		} else {
+			return Promise.resolve();
+		}
+	}
+}
