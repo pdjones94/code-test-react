@@ -9,10 +9,12 @@ import {
 	SELECT_PAGE
 } from '../actions/apiActions'
 
-function selectedPage(state='default', action) {
+const initialState = 1
+
+function selectedPage(state=initialState, action) {
 	switch(action.type) {
 		case SELECT_PAGE:
-			return action.beer_page;
+			return state + 1;
 		default:
 			return state;
 	}
@@ -22,7 +24,7 @@ function selectedPage(state='default', action) {
 function beers(
 	state={
 		isFetching: false,
-		items: []
+		items: [],
 	},
 	action
 ) {
@@ -34,7 +36,7 @@ function beers(
 		case RECEIVE_BEERS:
 			return Object.assign({}, state, {
 				isFetching: false,
-				items: action.beers
+				items: action.beers,
 			})
 		default:
 			return state;
