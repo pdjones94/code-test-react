@@ -6,7 +6,16 @@ export default class Beers extends Component {
 		return (
 			<ul>
 				{this.props.beers.map((beer, i) => (
-					<li key={i}> {beer.name}</li>
+
+					<li key={i}>
+						<div class="list-details">
+							<img src={beer.image_url}/>
+							<a>{beer.name}</a>
+						</div>
+						<div class="list-button">
+							<button>Add To Cart</button>
+						</div>
+					</li>
 					))}
 			</ul>
 		)

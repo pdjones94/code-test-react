@@ -9,6 +9,85 @@ body {
 	text-align: center;
 }
 
-.button {
+#root p {
 	height: 40px;
+	text-align: center;
+}
+
+.list-details:hover + .list-button button {
+	display: inline-block;
+}
+
+li button {
+	display: none;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Klavika";
+}
+
+li button:hover {
+	cursor: pointer;
+}
+
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: "Klavika";
+}
+
+
+li img {
+	display: block;
+	width: 75px;
+	text-align: center;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+	list-style: none;
+	float: left;
+	padding: 15px;
+	min-height: 450px
+}
+
+.list-details {
+	padding-bottom: 10px;
+}
+
+.list-details:hover {
+	background-color: grey;
+	opacity: 0.5;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  font-family: "Klavika";
+  max-width: 75px;
+  padding-left: 5px;
+}
+
+h1 {
+	text-align: center;
 }

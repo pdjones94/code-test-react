@@ -54,7 +54,6 @@ export function shouldFetchBeers(state, beer_page) {
 		console.log('Need to fetch beers')
 		return true;
 	} else {
-		console.log(beers.length, state);
 		console.log('No need to fetch beers')
 		return false;
 	}

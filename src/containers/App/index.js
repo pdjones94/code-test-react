@@ -61,11 +61,6 @@ class App extends React.Component {
       <div>
         
         <Home />
-        <p>
-          {!isFetching && (
-            <button onClick={this.handleRefreshClick}>Refresh</button>
-          )}
-        </p>
         {isFetching && beers.length / selectedPage < 10 && <h2>Loading...</h2>}
         {!isFetching && beers.length === 0 && <h2>Empty.</h2>}
         {beers.length > 0 && (
@@ -73,8 +68,7 @@ class App extends React.Component {
             <Beers beers={beers}/>
           </div>
         )}
-        <p>
-          <span>{this.props.selectedPage}</span>
+        <p>          
           {!isFetching && (
             // <LoadBeer 
             //   value={selectedPage}
@@ -101,22 +95,25 @@ function mapStateToProps(state) {
   console.log('SelectedPage:',selectedPage)
 
   let allBeers = [];
+  let fetching = true;
   if (beersByPage[selectedPage]) {
     for (let i=1;i<selectedPage+1;i++) {
       console.log(`Beer Page ${i}: ${beersByPage[i].items}`);
       allBeers = allBeers.concat(beersByPage[i].items);
     }    
+    fetching = beersByPage[selectedPage].isFetching;
   }
 
-  console.log(allBeers);
+  console.log('All Beers:',allBeers);
 
   const { isFetching, items:beers } = {
-    isFetching: beersByPage[selectedPage].isFetching || false,
+    isFetching: fetching,
     items: allBeers
-  } || {
-    isFetching: true,
-    items: []
-  }
+  } 
+  // || {
+  //   isFetching: true,
+  //   items: []
+  // }
 
   return {
     selectedPage,
