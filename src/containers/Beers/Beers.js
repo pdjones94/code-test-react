@@ -3,18 +3,24 @@ import PropTypes from 'prop-types';
 
 export default class Beers extends Component {
 	render() {
+		const onClick = this.props.onClick;
+
 		return (
 			<ul>
 				{this.props.beers.map((beer, i) => (
 
 					<li key={i}>
-						<div class="list-details">
-							<img src={beer.image_url}/>
-							<a>{beer.name}</a>
+
+						<div className="list-details">
+							<a onClick={onClick}>
+								<img src={beer.image_url} data-key={i}/>
+								<p data-key={i}>{beer.name}</p>
+							</a>
 						</div>
-						<div class="list-button">
+						<div className="list-button">
 							<button>Add To Cart</button>
 						</div>
+						
 					</li>
 					))}
 			</ul>
@@ -23,5 +29,9 @@ export default class Beers extends Component {
 }
 
 Beers.propTypes = {
-	beers: PropTypes.array.isRequired
+	beers: PropTypes.array.isRequired,
+	onClick: PropTypes.func.isRequired
 }
+
+// <div class="list-button">
+// </div>

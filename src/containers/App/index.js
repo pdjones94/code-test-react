@@ -9,7 +9,9 @@ import { connect } from 'react-redux';
 import {
   selectPage,
   fetchBeersIfNeeded,
-  fetchBeers
+  fetchBeers,
+  addToBasket,
+  removeFromBasket
 } from '../../actions/apiActions'
 
 import Beers from '../Beers/Beers'
@@ -22,7 +24,8 @@ class App extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
-    this.increment = this.increment.bind(this)
+    this.increment = this.increment.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -54,18 +57,27 @@ class App extends React.Component {
     this.props.dispatch(selectPage())
   }
 
+  addToCart(event) {
+    // console.log(event.target.getAttribute('data-key'));
+    const itemId = event.target.getAttribute('data-key');
+    console.log('Adding beer to basket:',this.props.beers[itemId]);
+    this.props.dispatch(addToBasket(this.props.basket, this.props.beers[itemId]));
+  }
+
   render() {
     const { selectedPage, beers, isFetching } = this.props;
     return (
 
       <div>
-        
         <Home />
         {isFetching && beers.length / selectedPage < 10 && <h2>Loading...</h2>}
         {!isFetching && beers.length === 0 && <h2>Empty.</h2>}
         {beers.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Beers beers={beers}/>
+            <Beers 
+              beers={beers}
+              onClick={this.addToCart}
+            />
           </div>
         )}
         <p>          
@@ -87,6 +99,7 @@ App.propTypes = {
   selectedPage: PropTypes.number.isRequired,
   beers: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
+  basket: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
@@ -104,6 +117,10 @@ function mapStateToProps(state) {
     fetching = beersByPage[selectedPage].isFetching;
   }
 
+  const basket = state.basket || [];
+
+  console.log('BASKET:',state.basket)
+
   console.log('All Beers:',allBeers);
 
   const { isFetching, items:beers } = {
@@ -118,7 +135,8 @@ function mapStateToProps(state) {
   return {
     selectedPage,
     beers,
-    isFetching
+    isFetching,
+    basket
   }
 }
 

@@ -3,6 +3,8 @@ import fetch from 'cross-fetch';
 export const REQUEST_BEERS = 'REQUEST_BEERS';
 export const RECEIVE_BEERS = 'RECEIVE_BEERS';
 export const SELECT_PAGE = 'SELECT_PAGE';
+export const ADD_TO_BASKET = 'ADD_TO_BASKET';
+export const REMOVE_FROM_BASKET = 'REMOVE_FROM_BASKET';
 
 export function requestBeers(beer_page) {
 	console.log(beer_page);
@@ -64,8 +66,22 @@ export function fetchBeersIfNeeded(beer_page) {
 		if (shouldFetchBeers(getState(), beer_page)) {
 			return dispatch(fetchBeers(beer_page))
 		}
-		//  else {
-		// 	return Promise.resolve();
-		// }
 	}
+}
+
+export function addToBasket(state, item) {
+	return {
+		type: ADD_TO_BASKET,
+		item: item,
+	}
+}
+
+export function removeFromBasket(state, id) {
+	const beers = state.beers;
+	console.log(beers);
+	// if (!beers[id]) {
+	// 	console.log('Nothing to remove');
+	// } else {
+	// 	console.log(`Removing ${i}`);
+	// }
 }
