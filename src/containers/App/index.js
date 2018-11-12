@@ -12,7 +12,7 @@ import {
 } from '../../actions/apiActions'
 
 import Beers from '../Beers/Beers'
-import Picker from '../Home/Picker'
+
 
 
 class App extends React.Component {
