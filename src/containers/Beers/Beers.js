@@ -9,10 +9,10 @@ export default class Beers extends Component {
 			<ul>
 				{this.props.beers.map((beer, i) => (
 
-					<li key={i}>
+					<li key={i} className="beer-list">
 
-						<div className="list-details">
-							<a onClick={onClick}>
+						<div className="list-details" data-key={i}  onClick={onClick}>
+							<a>
 								<img src={beer.image_url} data-key={i}/>
 								<p data-key={i}>{beer.name}</p>
 							</a>

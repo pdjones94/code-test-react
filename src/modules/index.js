@@ -64,6 +64,7 @@ function basket(state=[], action) {
 		case ADD_TO_BASKET:
 			console.log(`Current basket: ${state}; Adding: ${action.item}`);
 			state.push(action.item);
+			window.alert(`Added ${action.item.name} to basket`);
 			return state;
 		case REMOVE_FROM_BASKET:
 			// console.log(state.basket);

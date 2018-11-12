@@ -4,12 +4,16 @@ body {
   font-family: sans-serif;
 }
 
+header a {
+	padding-right: 10px;
+}
+
 .button_container {
 	padding-top: 5%;
 	text-align: center;
 }
 
-#root p {
+.list-details p {
 	height: 40px;
 	text-align: center;
 }
@@ -30,7 +34,7 @@ body {
   font-family: "Klavika";
 }
 
-li button:hover {
+.beer-list button:hover {
 	cursor: pointer;
 }
 
@@ -63,7 +67,7 @@ ul {
   overflow: hidden;
 }
 
-li {
+.beer-list {
 	list-style: none;
 	float: left;
 	padding: 15px;

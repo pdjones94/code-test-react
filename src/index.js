@@ -4,24 +4,18 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import Root from './containers/Root';
-import { selectPage, /*fetchBeers,*/ fetchBeersIfNeeded } from './actions/apiActions';
-import store from './store'
+import store, { history } from './store'
 
 // import routes from './'
 
 import './index.css';
 
 
-
-// store.dispatch(selectPage(1));
-// store
-// 	.dispatch(fetchBeersIfNeeded(1))
-// 	.then(() => console.log(store.getState())
-// 	)
-
-
-
 render(
-  <Root />,
+	<Provider store={store}>
+		<ConnectedRouter history = {history}>
+			<Root />
+		</ConnectedRouter>
+	</Provider>,
   document.getElementById('root')
 );

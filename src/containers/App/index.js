@@ -1,10 +1,7 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
 import Home from '../Home';
-import Checkout from '../Checkout';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 
 import {
   selectPage,
@@ -59,6 +56,7 @@ class App extends React.Component {
 
   addToCart(event) {
     // console.log(event.target.getAttribute('data-key'));
+    console.log(event.target);
     const itemId = event.target.getAttribute('data-key');
     console.log('Adding beer to basket:',this.props.beers[itemId]);
     this.props.dispatch(addToBasket(this.props.basket, this.props.beers[itemId]));
@@ -70,7 +68,6 @@ class App extends React.Component {
 
       <div>
         <Home />
-        {isFetching && beers.length / selectedPage < 10 && <h2>Loading...</h2>}
         {!isFetching && beers.length === 0 && <h2>Empty.</h2>}
         {beers.length > 0 && (
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
@@ -89,6 +86,8 @@ class App extends React.Component {
             <button onClick={this.increment}>Load Stuff</button>
           )}
         </p>
+        {isFetching && beers.length / selectedPage < 10 && <h2>Loading...</h2>}
+
       </div>
     )
   }
